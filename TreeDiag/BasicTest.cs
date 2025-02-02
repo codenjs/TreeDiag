@@ -9,7 +9,7 @@ public class Employee
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Title { get; set; }
-    public List<Employee> DirectReports = new List<Employee>();
+    public List<Employee> DirectReports = [];
 }
 
 public class EmployeeTreeDiagnosticWriter : TreeDiagnosticWriter<Employee>
@@ -52,22 +52,23 @@ public class BasicTest
             }
         };
 
-        var expected = @"
-Executive Director Joe Smith
-  Executive Assistant Lynelle Hinck
-  Development Director Cathy Brown
-    Development Assistant Lisa Rudolph
-    Special Events Assistant Mandy Schaff
-  Program Director Allen Alvarez
-    Housing Coordinator Jim Rubino
-    Workforce Coordinator Allie Webster
-    Public Assistance Coordinator Kelly Brock
-  Finance/HR Director Mark Brender
-    Finance Assistant Jean Hubert
-  Volunteer Director Kim Rudolph
-    Volunteer Coordinator Jamie Martin
-";
+        var expected = """
+            Executive Director Joe Smith
+              Executive Assistant Lynelle Hinck
+              Development Director Cathy Brown
+                Development Assistant Lisa Rudolph
+                Special Events Assistant Mandy Schaff
+              Program Director Allen Alvarez
+                Housing Coordinator Jim Rubino
+                Workforce Coordinator Allie Webster
+                Public Assistance Coordinator Kelly Brock
+              Finance/HR Director Mark Brender
+                Finance Assistant Jean Hubert
+              Volunteer Director Kim Rudolph
+                Volunteer Coordinator Jamie Martin
+
+            """;
         var actual = new EmployeeTreeDiagnosticWriter().Write(tree);
-        Assert.Equal(expected, Environment.NewLine + actual);
+        Assert.Equal(expected, actual);
     }
 }

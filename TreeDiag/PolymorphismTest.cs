@@ -7,7 +7,7 @@ namespace TreeDiag;
 public class ViewModel
 {
     public string Name { get; set; }
-    public List<ViewModel> Children = new List<ViewModel>();
+    public List<ViewModel> Children = [];
 }
 
 public class TabViewModel : ViewModel { }
@@ -72,22 +72,23 @@ public class PolymorphismTest
             }
         };
 
-        var expected = @"
-Root [ViewModel]
-  Input [TabViewModel]
-    Control Settings [TextboxViewModel]
-    Geometry [TableViewModel] Rows:5
-    Material [TableViewModel] Rows:1
-    Additional Loads [TableViewModel] Rows:10
-  Output [TabViewModel]
-    Summary [TextboxViewModel]
-    3D Model [ImageViewModel] 800Wx600H
-    Temperature Graph [ImageViewModel] 500Wx500H
-    Pressure Graph [ImageViewModel] 500Wx500H
-  Comments [TabViewModel]
-    Additional Comments [TextboxViewModel]
-";
+        var expected = """
+            Root [ViewModel]
+              Input [TabViewModel]
+                Control Settings [TextboxViewModel]
+                Geometry [TableViewModel] Rows:5
+                Material [TableViewModel] Rows:1
+                Additional Loads [TableViewModel] Rows:10
+              Output [TabViewModel]
+                Summary [TextboxViewModel]
+                3D Model [ImageViewModel] 800Wx600H
+                Temperature Graph [ImageViewModel] 500Wx500H
+                Pressure Graph [ImageViewModel] 500Wx500H
+              Comments [TabViewModel]
+                Additional Comments [TextboxViewModel]
+
+            """;
         var actual = new ViewModelTreeDiagnosticWriter().Write(tree);
-        Assert.Equal(expected, Environment.NewLine + actual);
+        Assert.Equal(expected, actual);
     }
 }
