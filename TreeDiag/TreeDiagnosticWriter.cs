@@ -1,26 +1,22 @@
-﻿using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 
 namespace TreeDiag;
 
-public abstract class TreeDiagnosticWriter<T>
+public abstract class TreeDiagnosticWriter<T> : TreeEnumerator<T>
 {
+    private StringBuilder _builder;
+
     public string Write(T node)
     {
-        var builder = new StringBuilder();
-        AppendNodeWithChildren(builder, node, 0);
-        return builder.ToString();
+        _builder = new StringBuilder();
+        EnumerateRoot(node);
+        return _builder.ToString();
     }
 
-    private void AppendNodeWithChildren(StringBuilder builder, T node, int level)
+    protected override void ProcessNode(T node, int level)
     {
         var indent = new string(' ', level * 2);
-        builder.AppendLine(indent + Format(node));
-
-        foreach (var child in GetChildren(node))
-        {
-            AppendNodeWithChildren(builder, child, level + 1);
-        }
+        _builder.AppendLine(indent + Format(node));
     }
 
     protected string GetShortTypeName(T node)
@@ -30,5 +26,4 @@ public abstract class TreeDiagnosticWriter<T>
     }
 
     protected abstract string Format(T node);
-    protected abstract IEnumerable<T> GetChildren(T node);
 }
