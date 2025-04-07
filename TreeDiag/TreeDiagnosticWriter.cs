@@ -13,10 +13,10 @@ public abstract class TreeDiagnosticWriter<T> : TreeEnumerator<T>
         return _builder.ToString();
     }
 
-    protected override void ProcessNode(T node, int level)
+    protected override void ProcessNode(T node, int level, int indexForCurrentLevel)
     {
         var indent = new string(' ', level * 2);
-        _builder.AppendLine(indent + Format(node));
+        _builder.AppendLine($"{indent}{{{indexForCurrentLevel}}} {Format(node)}");
     }
 
     protected string GetShortTypeName(T node)

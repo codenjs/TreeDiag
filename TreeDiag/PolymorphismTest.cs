@@ -73,19 +73,19 @@ public class PolymorphismTest
         };
 
         var expected = """
-            Root [ViewModel]
-              Input [TabViewModel]
-                Control Settings [TextboxViewModel]
-                Geometry [TableViewModel] Rows:5
-                Material [TableViewModel] Rows:1
-                Additional Loads [TableViewModel] Rows:10
-              Output [TabViewModel]
-                Summary [TextboxViewModel]
-                3D Model [ImageViewModel] 800Wx600H
-                Temperature Graph [ImageViewModel] 500Wx500H
-                Pressure Graph [ImageViewModel] 500Wx500H
-              Comments [TabViewModel]
-                Additional Comments [TextboxViewModel]
+            {0} Root [ViewModel]
+              {0} Input [TabViewModel]
+                {0} Control Settings [TextboxViewModel]
+                {1} Geometry [TableViewModel] Rows:5
+                {2} Material [TableViewModel] Rows:1
+                {3} Additional Loads [TableViewModel] Rows:10
+              {1} Output [TabViewModel]
+                {0} Summary [TextboxViewModel]
+                {1} 3D Model [ImageViewModel] 800Wx600H
+                {2} Temperature Graph [ImageViewModel] 500Wx500H
+                {3} Pressure Graph [ImageViewModel] 500Wx500H
+              {2} Comments [TabViewModel]
+                {0} Additional Comments [TextboxViewModel]
 
             """;
         var actual = new ViewModelTreeDiagnosticWriter().Write(tree);

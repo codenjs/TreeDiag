@@ -53,19 +53,19 @@ public class BasicTest
         };
 
         var expected = """
-            Executive Director Joe Smith
-              Executive Assistant Lynelle Hinck
-              Development Director Cathy Brown
-                Development Assistant Lisa Rudolph
-                Special Events Assistant Mandy Schaff
-              Program Director Allen Alvarez
-                Housing Coordinator Jim Rubino
-                Workforce Coordinator Allie Webster
-                Public Assistance Coordinator Kelly Brock
-              Finance/HR Director Mark Brender
-                Finance Assistant Jean Hubert
-              Volunteer Director Kim Rudolph
-                Volunteer Coordinator Jamie Martin
+            {0} Executive Director Joe Smith
+              {0} Executive Assistant Lynelle Hinck
+              {1} Development Director Cathy Brown
+                {0} Development Assistant Lisa Rudolph
+                {1} Special Events Assistant Mandy Schaff
+              {2} Program Director Allen Alvarez
+                {0} Housing Coordinator Jim Rubino
+                {1} Workforce Coordinator Allie Webster
+                {2} Public Assistance Coordinator Kelly Brock
+              {3} Finance/HR Director Mark Brender
+                {0} Finance Assistant Jean Hubert
+              {4} Volunteer Director Kim Rudolph
+                {0} Volunteer Coordinator Jamie Martin
 
             """;
         var actual = new EmployeeTreeDiagnosticWriter().Write(tree);
